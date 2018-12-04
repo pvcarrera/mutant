@@ -6,6 +6,13 @@ module Mutant
     include AbstractType, Adamantium::Flat, Enumerable
     include Concord::Public.new(:context, :node)
 
+    def initialize(*arguments)
+      super
+
+      source_lines
+      source_line
+    end
+
     # Mutations for this subject
     #
     # @return [Enumerable<Mutation>]

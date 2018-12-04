@@ -9,6 +9,12 @@ module Mutant
     CODE_DELIMITER = "\0".freeze
     CODE_RANGE     = (0..4).freeze
 
+    def initialize(*arguments)
+      super
+
+      monkeypatch
+    end
+
     # Identification string
     #
     # @return [String]

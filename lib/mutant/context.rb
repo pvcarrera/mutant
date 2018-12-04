@@ -8,6 +8,14 @@ module Mutant
 
     NAMESPACE_DELIMITER = '::'.freeze
 
+    def initialize(*arguments)
+      super
+
+      nesting
+      match_expressions
+      name_nesting
+    end
+
     # Return root node for mutation
     #
     # @return [Parser::AST::Node]

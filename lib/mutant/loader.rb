@@ -18,6 +18,8 @@ module Mutant
     #
     # @return [undefined]
     def call
+      puts source
+
       kernel.eval(
         source,
         binding,

@@ -34,9 +34,16 @@ module Mutant
 
         writer.close
 
-        Result::Success.new(marshal.load(reader)).tap do
-          process.waitpid(pid)
+        result = Result::Success.new(marshal.load(reader))
+
+        _pid, status = process.wait2(pid)
+
+        unless status.success?
+          d status
+          d result
         end
+
+        result
       end
 
       # Handle child process
@@ -57,8 +64,8 @@ module Mutant
       # @return [Object]
       def result
         devnull.call do |null|
-          stderr.reopen(null)
-          stdout.reopen(null)
+#         stderr.reopen(null)
+#         stdout.reopen(null)
           yield
         end
       end
